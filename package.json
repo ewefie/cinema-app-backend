@@ -1,10 +1,10 @@
 {
-  "name": "vidly",
+  "name": "cinema",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,8 +14,10 @@
     "fawn": "^2.1.5",
     "http": "0.0.0",
     "joi": "^13.1.0",
-    "joi-objectid": "^2.0.0",
     "mongoose": "^5.8.3",
+    "nodemailer": "^6.4.2"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.2"
   }
 }

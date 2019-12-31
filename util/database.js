@@ -26,4 +26,4 @@ const mongoConnect = callback => {
         })
 };
 
-exports.mongoConnect = mongoConnect;
+exports.mongoConnect = mongoConnect

@@ -1,5 +1,6 @@
 const { Booking, validatePost, validatePut } = require('../models/booking');
 const mongoose = require('mongoose');
+const { notifyBookingMade, notifyBookingConfirmed } = require('../util/mailer')
 const express = require('express');
 const router = express.Router();
 
@@ -24,6 +25,7 @@ router.post("/", async (req, res) => {
         showtimeId: req.body.showtimeId
     });
     await booking.save();
+    notifyBookingMade(booking);
     res.send(booking);
 });
 
@@ -35,7 +37,7 @@ router.put('/:id', async (req, res) => {
         confirmed: req.body.confirmed
     });
     if (!booking) return res.status(404).send('The booking with the given ID was not found.')
-
+    notifyBookingConfirmed(booking);
     res.send(booking);
 });
 
