@@ -4,6 +4,8 @@ const { notifyBookingMade, notifyBookingConfirmed } = require('../util/mailer')
 const express = require('express');
 const router = express.Router();
 
+
+//usunąć przed deployem
 router.get('/', async (req, res) => {
     const bookings = await Booking.find();
     res.send(bookings);
@@ -24,9 +26,11 @@ router.post("/", async (req, res) => {
         seats: req.body.seats,
         showtimeId: req.body.showtimeId
     });
-    await booking.save();
-    notifyBookingMade(booking);
-    res.send(booking);
+    await booking.save((err) => {
+        if (err) return res.status(500).send(err);
+        notifyBookingMade(booking);
+        res.send(booking);
+    });
 });
 
 router.put('/:id', async (req, res) => {
@@ -35,10 +39,21 @@ router.put('/:id', async (req, res) => {
 
     const booking = await Booking.findByIdAndUpdate(req.params.id, {
         confirmed: req.body.confirmed
-    });
+    }, { new: true });
     if (!booking) return res.status(404).send('The booking with the given ID was not found.')
-    notifyBookingConfirmed(booking);
+    if (booking.confirmed == true) notifyBookingConfirmed(booking);
     res.send(booking);
 });
+
+router.delete('/:id', async (req, res) => {
+    await Booking.findByIdAndDelete(req.params.id, (err, booking) => {
+        if (err) return res.status(500).send(err);
+        const response = {
+            message: "Not confirmed booking expired",
+            id: booking.id
+        };
+        return res.status(200).send(response);
+    })
+})
 
 module.exports = router;
