@@ -3,16 +3,15 @@ const { Booking } = require('../models/booking');
 const { createBookingMessage, createConfirmationMessage } = require('./message');
 const { checkIfBookingConfirmed } = require('./confirmationManager');
 
-const TIME_TO_CONFIRM = 20000;
-// const TIME_TO_CONFIRM = 3600000;
+const TIME_TO_CONFIRM = 300000;
 
 
 let transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    host: "smtp.sendgrid.net",
+    port: 25,
     auth: {
-        user: "cc881f0c6cbd93",
-        pass: "4f03748d5906f1"
+        user: "",
+        pass: ""
     }
 });
 

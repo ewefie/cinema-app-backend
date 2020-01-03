@@ -1,5 +1,5 @@
 const { Booking } = require('../models/booking')
-
+const { notifyBookingMade, notifyBookingConfirmed } = require('../util/mailer')
 
 const autoDestructNotConfirmedBooking = async (bookingId) => {
     await Booking.findByIdAndDelete(bookingId, (err, booking) => {
@@ -13,19 +13,13 @@ const autoDestructNotConfirmedBooking = async (bookingId) => {
 };
 
 const checkIfBookingConfirmed = async (bookingId) => {
-    console.log("sprawdzam czy potwierdzone", bookingId)
     const booking = await Booking.findById(bookingId);
     if (!booking) return;
     const isConfirmed = booking.confirmed;
-    console.log(isConfirmed);
     if (!isConfirmed) autoDestructNotConfirmedBooking(bookingId);
 };
 
-const confirmBooking = () => {
-
-};
 
 exports.checkIfBookingConfirmed = checkIfBookingConfirmed;
-exports.confirmBooking = confirmBooking;
 
 

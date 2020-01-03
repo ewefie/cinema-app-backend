@@ -1,10 +1,3 @@
-const { confirmBooking } = require('./confirmationManager');
-
-const bookingConfirmed = () => {
-    console.log('tu bedziemy robić zapytanie do api, które zapdejtuje booking ')
-};
-
-
 const createBookingMessage = (booking) => {
     return `<!DOCTYPE html>
     <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
@@ -84,10 +77,6 @@ const createBookingMessage = (booking) => {
                 u~div .email-container {
                     min-width: 414px !important;
                 }
-            }
-    
-            .bg_white {
-                background: #ffffff;
             }
     
             .btn {
@@ -174,7 +163,7 @@ const createBookingMessage = (booking) => {
                 <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
                     style="margin: auto;">
                     <tr>
-                        <td valign="top" class="bg_white" style="padding: 1em 2.5em;">
+                        <td valign="top" style="padding: 1em 2.5em;">
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <div class="logo" style="text-align: center;">
@@ -185,7 +174,7 @@ const createBookingMessage = (booking) => {
                         </td>
                     </tr>
                     <tr>
-                        <td valign="middle" class="hero bg_white" style="height: 400px;">
+                        <td valign="middle" class="hero" style="height: 400px;">
                             <div class="overlay"></div>
                             <table>
                                 <tr>
@@ -195,7 +184,7 @@ const createBookingMessage = (booking) => {
                                             <p>We got your showtime reservation!</p>
                                             <p>To confirm booking please make payment via our completle non-suspicious
                                                 website ^^</p>
-                                            <p><a href="#" class="btn btn-primary" onclick=${bookingConfirmed()}>Gib us money</a></p>
+                                            <p><a href="#" class="btn btn-primary">Gib us money - add link to uur website</a></p>
                                             <p>If it wasn't you, just ignore this email.</p>
                                         </div>
                                     </td>
@@ -379,7 +368,7 @@ const createConfirmationMessage = (booking) => {
                 <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
                     style="margin: auto;">
                     <tr>
-                        <td valign="top" class="bg_white" style="padding: 1em 2.5em;">
+                        <td valign="top" style="padding: 1em 2.5em;">
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <div class="logo" style="text-align: center;">
@@ -390,7 +379,7 @@ const createConfirmationMessage = (booking) => {
                         </td>
                     </tr>
                     <tr>
-                        <td valign="middle" class="hero bg_white" style="height: 400px;">
+                        <td valign="middle" class="hero" style="height: 400px;">
                             <div class="overlay"></div>
                             <table>
                                 <tr>

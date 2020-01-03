@@ -18,10 +18,25 @@ router.get('/', async (req, res) => {
 //     res.send(booking);
 // });
 
+
+router.get('/:showtimeId', async (req, res) => {
+    const bookings = await Booking.find({ 'showtimeId': req.params.showtimeId });
+    let seatsToSend = [];
+    const seatsTaken = bookings.map(booking => {
+        return booking.seats.map(seat => {
+            return [seat.row, seat.number]
+        })
+    });
+    seatsTaken.forEach(element => {
+        seatsToSend.push(...element);
+    });
+    res.send(seatsToSend);
+});
+
 router.post("/", async (req, res) => {
+    // check if seats are not taken for this showtime
     const { error } = validatePost(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-
     let booking = new Booking({
         customer: req.body.customer,
         seats: req.body.seats,
@@ -34,7 +49,7 @@ router.post("/", async (req, res) => {
     });
 });
 
-// **only for tests**
+
 router.put('/:id', async (req, res) => {
     const { error } = validatePut(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -48,15 +63,15 @@ router.put('/:id', async (req, res) => {
 });
 
 // **only for tests**
-// router.delete('/:id', async (req, res) => {
-//     await Booking.findByIdAndDelete(req.params.id, (err, booking) => {
-//         if (err) return res.status(500).send(err);
-//         const response = {
-//             message: "Not confirmed booking expired",
-//             id: booking.id
-//         };
-//         return res.status(200).send(response);
-//     })
-// })
+router.delete('/:id', async (req, res) => {
+    await Booking.findByIdAndDelete(req.params.id, (err, booking) => {
+        if (err) return res.status(500).send(err);
+        const response = {
+            message: "Not confirmed booking expired",
+            id: booking.id
+        };
+        return res.status(200).send(response);
+    })
+})
 
 module.exports = router;

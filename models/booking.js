@@ -47,6 +47,8 @@ const bookingSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+bookingSchema.index({ showtimeId: 1, seats: 1 }, { unique: true });
+
 const Booking = mongoose.model('Booking', bookingSchema);
 
 const validatePostBooking = (booking) => {
