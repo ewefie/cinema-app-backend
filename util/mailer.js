@@ -1,8 +1,11 @@
 const nodemailer = require('nodemailer');
 const { Booking } = require('../models/booking');
 const { createBookingMessage, createConfirmationMessage } = require('./message');
+const { checkIfBookingConfirmed } = require('./confirmationManager');
 
-const timeForConfirmation = 3600000;
+const TIME_TO_CONFIRM = 20000;
+// const TIME_TO_CONFIRM = 3600000;
+
 
 let transport = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
@@ -12,19 +15,6 @@ let transport = nodemailer.createTransport({
         pass: "4f03748d5906f1"
     }
 });
-
-const autoDestructNotConfirmedBooking = (bookingId) => {
-    console.log('usuwam niepotwierdzony booking', bookingId)
-};
-
-const checkIfBookingConfirmed = async (bookingId) => {
-    console.log("sprawdzam czy potwierdzone", bookingId)
-    const booking = await Booking.findById(bookingId);
-    if (!booking) return;
-    const isConfirmed = booking.confirmed;
-    console.log(isConfirmed);
-    if (!isConfirmed) autoDestructNotConfirmedBooking(bookingId);
-};
 
 const notifyBookingMade = (booking) => {
     const message = {
@@ -38,11 +28,11 @@ const notifyBookingMade = (booking) => {
         if (err) {
             console.log(err)
         } else {
-            setTimeout(() => {
-                checkIfBookingConfirmed(booking._id)
-            }, timeForConfirmation);
             console.log(info);
         }
+        setTimeout(() => {
+            checkIfBookingConfirmed(booking._id)
+        }, TIME_TO_CONFIRM);
     });
 };
 const notifyBookingConfirmed = (booking) => {

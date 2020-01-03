@@ -5,17 +5,18 @@ const express = require('express');
 const router = express.Router();
 
 
-//usunąć przed deployem
+// **only for tests**
 router.get('/', async (req, res) => {
     const bookings = await Booking.find();
     res.send(bookings);
 });
 
-router.get('/:id', async (req, res) => {
-    const booking = await Booking.findById(req.params.id);
-    if (!booking) return res.status(404).send('The booking with the given ID was not found.');
-    res.send(booking);
-});
+// **only for tests**
+// router.get('/:id', async (req, res) => {
+//     const booking = await Booking.findById(req.params.id);
+//     if (!booking) return res.status(404).send('The booking with the given ID was not found.');
+//     res.send(booking);
+// });
 
 router.post("/", async (req, res) => {
     const { error } = validatePost(req.body);
@@ -33,6 +34,7 @@ router.post("/", async (req, res) => {
     });
 });
 
+// **only for tests**
 router.put('/:id', async (req, res) => {
     const { error } = validatePut(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -45,15 +47,16 @@ router.put('/:id', async (req, res) => {
     res.send(booking);
 });
 
-router.delete('/:id', async (req, res) => {
-    await Booking.findByIdAndDelete(req.params.id, (err, booking) => {
-        if (err) return res.status(500).send(err);
-        const response = {
-            message: "Not confirmed booking expired",
-            id: booking.id
-        };
-        return res.status(200).send(response);
-    })
-})
+// **only for tests**
+// router.delete('/:id', async (req, res) => {
+//     await Booking.findByIdAndDelete(req.params.id, (err, booking) => {
+//         if (err) return res.status(500).send(err);
+//         const response = {
+//             message: "Not confirmed booking expired",
+//             id: booking.id
+//         };
+//         return res.status(200).send(response);
+//     })
+// })
 
 module.exports = router;

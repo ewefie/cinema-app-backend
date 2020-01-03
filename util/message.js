@@ -1,3 +1,5 @@
+const { confirmBooking } = require('./confirmationManager');
+
 const bookingConfirmed = () => {
     console.log('tu bedziemy robić zapytanie do api, które zapdejtuje booking ')
 };
