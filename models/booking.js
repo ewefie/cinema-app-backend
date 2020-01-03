@@ -22,14 +22,14 @@ const bookingSchema = new mongoose.Schema({
     seats: {
         type: [new mongoose.Schema({
             row: {
-                type: String,
-                minlength: 1,
-                maxlength: 1
+                type: Number,
+                min: 0,
+                max: 24
             },
             number: {
                 type: Number,
-                min: 1,
-                max: 30
+                min: 0,
+                max: 29
             }
         })],
         required: true
@@ -47,7 +47,7 @@ const bookingSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-bookingSchema.index({ showtimeId: 1, seats: 1 }, { unique: true });
+// bookingSchema.index({ showtimeId: 1, seats: 1 }, { unique: true });
 
 const Booking = mongoose.model('Booking', bookingSchema);
 
@@ -58,8 +58,8 @@ const validatePostBooking = (booking) => {
             email: Joi.string().min(5).max(50).required().email(),
         }).required(),
         seats: Joi.array().items(Joi.object().keys({
-            row: Joi.string().min(1).max(1).required(),
-            number: Joi.number().min(1).max(30).required()
+            row: Joi.number().min(0).max(24).required(),
+            number: Joi.number().min(0).max(29).required()
         })).required(),
         showtimeId: Joi.string().min(5).max(255).required(),
         confirmed: Joi.boolean().optional()

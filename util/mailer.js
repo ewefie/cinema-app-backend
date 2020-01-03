@@ -2,6 +2,9 @@ const nodemailer = require('nodemailer');
 const { Booking } = require('../models/booking');
 const { createBookingMessage, createConfirmationMessage } = require('./message');
 const { checkIfBookingConfirmed } = require('./confirmationManager');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const TIME_TO_CONFIRM = 300000;
 
@@ -10,8 +13,8 @@ let transport = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
     port: 25,
     auth: {
-        user: "",
-        pass: ""
+        user: process.env.USER,
+        pass: process.env.API_KEY
     }
 });
 

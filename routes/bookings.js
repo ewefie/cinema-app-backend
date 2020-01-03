@@ -4,6 +4,8 @@ const { notifyBookingMade, notifyBookingConfirmed } = require('../util/mailer')
 const express = require('express');
 const router = express.Router();
 
+const ROW_LENGTH = 30;
+const ROWS = 25;
 
 // **only for tests**
 router.get('/', async (req, res) => {
@@ -30,7 +32,11 @@ router.get('/:showtimeId', async (req, res) => {
     seatsTaken.forEach(element => {
         seatsToSend.push(...element);
     });
-    res.send(seatsToSend);
+    res.send({
+        rows: ROWS,
+        rowLength: ROW_LENGTH,
+        seatsTaken: seatsToSend
+    });
 });
 
 router.post("/", async (req, res) => {
