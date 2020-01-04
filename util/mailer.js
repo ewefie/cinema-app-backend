@@ -33,6 +33,7 @@ const notifyBookingMade = (booking) => {
             console.log(info);
         }
         setTimeout(() => {
+            console.log(checkIfBookingConfirmed);
             checkIfBookingConfirmed(booking._id)
         }, TIME_TO_CONFIRM);
     });
