@@ -1,8 +1,10 @@
 const Joi = require('joi');
 const { mongoConnect } = require("./util/database");
+const { removeNotConfirmedBookings } = require('./util/confirmationManager')
 const bookings = require('./routes/bookings');
 const express = require('express');
 const http = require('http');
+const cron = require('node-cron');
 const app = express();
 
 
@@ -28,6 +30,10 @@ mongoConnect(() => {
   server.listen(port);
   console.log(`Listening on port ${port}...`)
 });
+
+//this method clears db every hour from not confirmed bookings if they were not 
+//deleted correctly in 5 minuts after makeing reservetion;
+cron.schedule("00 * * * *", removeNotConfirmedBookings);
 
 module.exports = app;
 
