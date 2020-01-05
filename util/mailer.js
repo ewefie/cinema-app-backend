@@ -13,7 +13,7 @@ let transport = nodemailer.createTransport({
     host: "smtp.sendgrid.net",
     port: 25,
     auth: {
-        user: process.env.USER,
+        user: process.env.MAIL_USER,
         pass: process.env.API_KEY
     }
 });
@@ -28,7 +28,7 @@ const notifyBookingMade = (booking) => {
 
     transport.sendMail(message, function (err, info) {
         if (err) {
-            console.log(err)
+            console.log(err.message, process.env.USER, process.env.API_KEY)
         } else {
             console.log(info);
         }

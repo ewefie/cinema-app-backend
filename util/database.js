@@ -6,7 +6,7 @@ dotenv.config();
 const DB_USERNAME = process.env.DB_USERNAME;
 
 const DB_PASS = process.env.DB_PASS;
-const DB_NAME = 'cinema';
+const DB_NAME = process.env.DB_NAME;
 const DB_URI = `mongodb+srv://${DB_USERNAME}:${DB_PASS}@learningcluster-cru14.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 const DB_OPTIONS = {
     useNewUrlParser: true,
