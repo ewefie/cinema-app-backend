@@ -13,8 +13,8 @@ app.use(express.json());
 app.use((req, res, next) => {
   const APP_URL = "*";
   res.setHeader("Access-Control-Allow-Origin", APP_URL);
-  // po zakończeniu prac zostawić tylko GET i POST
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS, PATCH");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PATCH");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
