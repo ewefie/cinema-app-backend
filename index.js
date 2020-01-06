@@ -19,7 +19,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/bookings', bookings);
-
 const port = process.env.PORT || '3434';
 
 

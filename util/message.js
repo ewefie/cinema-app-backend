@@ -182,9 +182,8 @@ const createBookingMessage = (booking) => {
                                         <div class="text" style="padding: 0 4em; text-align: center;">
                                             <h2>Hi ${booking.customer.name}!</h2>
                                             <p>We got your showtime reservation!</p>
-                                            <p>To confirm booking please make payment via our completle non-suspicious
-                                                website ^^</p>
-                                            <p><a href="#" class="btn btn-primary">Gib us money - add link to uur website</a></p>
+                                            <p>To confirm booking please click the button below.</p>
+                                            <p><a href="localhost:3434/api/bookings/confirm/${booking._id}" class="btn btn-primary">Confirm</a></p>
                                             <p>If it wasn't you, just ignore this email.</p>
                                         </div>
                                     </td>
@@ -386,7 +385,7 @@ const createConfirmationMessage = (booking) => {
                                     <td>
                                         <div class="text" style="padding: 0 4em; text-align: center;">
                                             <h2>Hi ${booking.customer.name}!</h2>
-                                            <p>Your payment is confirmed!</p>
+                                            <p>Your booking is confirmed!</p>
                                             <p><a href="#" class="btn btn-primary">Check booking details</a></p>
                                             <p>If it wasn't you, just ignore this email.</p>
                                         </div>

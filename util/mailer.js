@@ -10,7 +10,7 @@ const TIME_TO_CONFIRM = 300000;
 
 
 let transport = nodemailer.createTransport({
-    host: "smtp.sendgrid.net",
+    host: process.env.SMTP_SERVER,
     port: 25,
     auth: {
         user: process.env.MAIL_USER,
@@ -20,7 +20,7 @@ let transport = nodemailer.createTransport({
 
 const notifyBookingMade = (booking) => {
     const message = {
-        from: 'bookings@allcinemasinoneplace.com',
+        from: 'booking@ciNEMA.com',
         to: `${booking.customer.email}`,
         subject: 'Showtime booking',
         html: `${createBookingMessage(booking)}`

@@ -33,6 +33,33 @@ const removeNotConfirmedBookings = async () => {
 }
 
 
+const confrimSeatsAreNotTaken = async (seatsToTake, showtimeId) => {
+    const taken = await getAllSeatsForShowtime(showtimeId);
+
+    for (const seatInBase of taken) {
+        for (const incomingSeat of seatsToTake) {
+            if (JSON.stringify(seatInBase) === (JSON.stringify(incomingSeat))) return false;
+        }
+    }
+    return true;
+}
+
+const getAllSeatsForShowtime = async (showtimeId) => {
+    const bookings = await Booking.find({ 'showtimeId': showtimeId });
+    let seatsToSend = [];
+    const seatsTaken = bookings.map(booking => {
+        return booking.seats.map(seat => {
+            return { row: seat.row, number: seat.number }
+        })
+    });
+    seatsTaken.forEach(element => {
+        seatsToSend.push(...element);
+    });
+    return seatsToSend;
+}
+
+exports.getAllSeatsForShowtime = getAllSeatsForShowtime;
+exports.confrimSeatsAreNotTaken = confrimSeatsAreNotTaken;
 exports.checkIfBookingConfirmed = checkIfBookingConfirmed;
 exports.removeNotConfirmedBookings = removeNotConfirmedBookings;
 
