@@ -23,7 +23,6 @@ router.get('/confirm/:id', async (req, res) => {
     }, { new: true });
     if (!booking) return res.status(404).send('The booking with the given ID was not found.')
     if (booking.confirmed == true) notifyBookingConfirmed(booking);
-    // res.send(booking);
     res.send('Booking confirmed!');
 })
 
@@ -41,8 +40,7 @@ router.post("/", async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
 
     const seatsNotTaken = await confrimSeatsAreNotTaken(req.body.seats, req.body.showtimeId);
-    //status?
-    if (!seatsNotTaken) return res.send("You are late, one on seats is already booked.")
+    if (!seatsNotTaken) return res.send("You are too late, at least one of selected seats is already booked.")
 
     console.log(seatsNotTaken)
     let booking = new Booking({
