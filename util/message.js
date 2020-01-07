@@ -183,7 +183,7 @@ const createBookingMessage = (booking) => {
                                             <h2>Hi ${booking.customer.name}!</h2>
                                             <p>We got your showtime reservation!</p>
                                             <p>To confirm booking please click the button below.</p>
-                                            <p><a href="localhost:3434/api/bookings/confirm/${booking._id}" class="btn btn-primary">Confirm</a></p>
+                                            <p><a href="https://api-cinemaapp.herokuapp.com/api/bookings/confirm/${booking._id}" class="btn btn-primary">Confirm</a></p>
                                             <p>If it wasn't you, just ignore this email.</p>
                                         </div>
                                     </td>
