@@ -19,7 +19,7 @@ const createBookingMessage = (booking) => {
                 padding: 0 !important;
                 height: 100% !important;
                 width: 100% !important;
-                background: #f1f1f1;
+                background: #444444;
             }
     
             * {
@@ -107,7 +107,7 @@ const createBookingMessage = (booking) => {
             }
     
             .logo h1 a {
-                color: #000000;
+                color: #444444;
                 font-size: 20px;
                 font-weight: 700;
                 text-transform: uppercase;
@@ -127,7 +127,7 @@ const createBookingMessage = (booking) => {
                 bottom: 0;
                 content: '';
                 width: 100%;
-                background: #000000;
+                background: #444444;
                 z-index: -1;
                 opacity: .3;
             }
@@ -153,7 +153,7 @@ const createBookingMessage = (booking) => {
     </head>
     
     <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #222222;">
-        <center style="width: 100%; background-color: #f1f1f1;">
+        <center style="width: 100%; background-color: #444444;">
             <div
                 style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
                 &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
@@ -219,7 +219,7 @@ const createConfirmationMessage = (booking) => {
                 padding: 0 !important;
                 height: 100% !important;
                 width: 100% !important;
-                background: #f1f1f1;
+                background: #444444;
             }
     
             * {
@@ -311,7 +311,7 @@ const createConfirmationMessage = (booking) => {
             }
     
             .logo h1 a {
-                color: #000000;
+                color: #ffffff;
                 font-size: 20px;
                 font-weight: 700;
                 text-transform: uppercase;
@@ -331,7 +331,7 @@ const createConfirmationMessage = (booking) => {
                 bottom: 0;
                 content: '';
                 width: 100%;
-                background: #000000;
+                background: #444444;
                 z-index: -1;
                 opacity: .3;
             }
@@ -357,7 +357,7 @@ const createConfirmationMessage = (booking) => {
     </head>
     
     <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #222222;">
-        <center style="width: 100%; background-color: #f1f1f1;">
+        <center style="width: 100%; background-color: #444444;">
             <div
                 style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
                 &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
