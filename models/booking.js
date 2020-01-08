@@ -26,7 +26,7 @@ const bookingSchema = new mongoose.Schema({
                 min: 0,
                 max: 24
             },
-            number: {
+            column: {
                 type: Number,
                 min: 0,
                 max: 29
@@ -59,7 +59,7 @@ const validatePostBooking = (booking) => {
         }).required(),
         seats: Joi.array().items(Joi.object().keys({
             row: Joi.number().min(0).max(24).required(),
-            number: Joi.number().min(0).max(29).required()
+            column: Joi.number().min(0).max(29).required()
         })).required(),
         showtimeId: Joi.string().min(5).max(255).required(),
         confirmed: Joi.boolean().optional()

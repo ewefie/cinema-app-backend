@@ -49,7 +49,7 @@ const getAllSeatsForShowtime = async (showtimeId) => {
     let seatsToSend = [];
     const seatsTaken = bookings.map(booking => {
         return booking.seats.map(seat => {
-            return { row: seat.row, number: seat.number }
+            return { row: seat.row, column: seat.column }
         })
     });
     seatsTaken.forEach(element => {
